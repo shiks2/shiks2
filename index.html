@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sachin Rathod | Portfolio</title>
+  <style>
+    :root {
+      --background: #000000;
+      --cream: #FFFDD0;
+      --text: #FFFDD0;
+      --accent: #FFFDD0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--background);
+      color: var(--text);
+      line-height: 1.6;
+      display: flex;
+      justify-content: center;
+    }
+
+    main {
+      width: 100%;
+      max-width: 1100px;
+      padding: 3rem 1.5rem 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    header {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .hero {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      padding: 2.5rem;
+      border: 1px solid var(--cream);
+      border-radius: 12px;
+      background: rgba(255, 253, 208, 0.02);
+    }
+
+    .hero h1 {
+      font-size: 2.25rem;
+      font-weight: 700;
+      color: var(--cream);
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--cream);
+      opacity: 0.9;
+    }
+
+    .actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      background: var(--cream);
+      color: #000000;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: transform 150ms ease, box-shadow 150ms ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(255, 253, 208, 0.12);
+    }
+
+    section {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    section h2 {
+      font-size: 1.6rem;
+      letter-spacing: 0.02rem;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      border: 1px solid var(--cream);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-decoration: none;
+      color: var(--cream);
+      background: transparent;
+      transition: background 150ms ease, color 150ms ease, transform 150ms ease;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .project-card:hover {
+      background: var(--cream);
+      color: #000000;
+      transform: translateY(-4px);
+    }
+
+    .project-card h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    .tech {
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
+
+    .project-card ul {
+      list-style: disc;
+      padding-left: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    footer {
+      border-top: 1px solid rgba(255, 253, 208, 0.25);
+      padding-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      align-items: flex-start;
+      font-size: 0.95rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--cream);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      padding-bottom: 0.15rem;
+      transition: border-color 150ms ease;
+    }
+
+    .footer-links a:hover {
+      border-color: var(--cream);
+    }
+
+    @media (max-width: 640px) {
+      .hero {
+        padding: 1.75rem;
+      }
+
+      .hero h1 {
+        font-size: 1.9rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header class="hero">
+      <div>
+        <p style="letter-spacing: 0.12rem; text-transform: uppercase; font-size: 0.95rem; opacity: 0.85;">Sachin Rathod</p>
+        <h1>Software Engineer | Java &amp; IoT</h1>
+        <p>Building reliable backends, connected systems, and performant services with modern Java, Spring, and cloud-native tooling.</p>
+      </div>
+      <div class="actions">
+        <a class="button" href="#projects">View Projects</a>
+      </div>
+    </header>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="projects-grid">
+        <a class="project-card" href="https://github.com/shiks2/springBoot_eCommerce" target="_blank" rel="noopener noreferrer">
+          <div>
+            <h3>E-Commerce Backend API</h3>
+            <p class="tech">Java · Spring Boot 3 · PostgreSQL · Docker</p>
+          </div>
+          <ul>
+            <li>Architected microservices-ready backend using Spring Boot &amp; Hibernate/JPA.</li>
+            <li>Implemented security using Spring Security, JWT, and BCrypt.</li>
+            <li>Integrated Grafana for JVM memory usage and health metrics.</li>
+            <li>Designed normalized PostgreSQL schema and optimized SQL queries.</li>
+          </ul>
+        </a>
+
+        <a class="project-card" href="https://github.com/shiks2/Paking_Lot_Manager/tree/master" target="_blank" rel="noopener noreferrer">
+          <div>
+            <h3>Parking Lot Manager</h3>
+            <p class="tech">Java · Object-Oriented Design</p>
+          </div>
+          <ul>
+            <li>Designed modular system adhering to SOLID principles.</li>
+            <li>Implemented algorithms for spot allocation and dynamic pricing.</li>
+            <li>Handled edge cases and concurrency for data integrity.</li>
+          </ul>
+        </a>
+      </div>
+    </section>
+
+    <footer>
+      <p>© 2026 Sachin Rathod</p>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/sachin-rathod-8b2911264/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://github.com/shiks2" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </div>
+    </footer>
+  </main>
+</body>
+</html>
