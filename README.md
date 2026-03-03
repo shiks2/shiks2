@@ -1,6 +1,6 @@
 # Sachin Rathod – Developer Portfolio
 
-A personal portfolio website for Sachin Rathod, a Flutter + Java/Spring Boot engineer focused on real-time IoT dashboards and connected-vehicle-ready systems.
+A personal portfolio website for me, Sachin Rathod — a Flutter + Java/Spring Boot engineer focused on real-time IoT dashboards and connected-vehicle-ready systems.
 
 ## Live Demo
 
@@ -10,9 +10,9 @@ Visit the live portfolio on GitHub Pages:
 
 Replace the placeholder URL with the deployed Pages link so visitors can explore the latest version.
 
-## About the Developer
+## About Me
 
-Sachin Rathod is a Software Engineer with around 2 years of experience based in Gandhinagar, India. He builds scalable mobile and web applications with a strong focus on responsive interfaces, reliable backend integrations, and real-time data systems. He is currently contributing to IoT-focused products and actively transitioning toward the Connected Vehicle domain.
+I am a Software Engineer with around 2 years of experience based in Gandhinagar, India. I build scalable mobile and web applications with a strong focus on responsive interfaces, reliable backend integrations, and real-time data systems. I am currently contributing to IoT-focused products and actively transitioning toward the Connected Vehicle domain.
 
 - Builds Flutter applications across mobile and desktop with production-focused UI quality.
 - Develops Java/Spring Boot backend services and REST API integrations.
