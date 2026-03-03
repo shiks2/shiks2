@@ -1,246 +1,534 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sachin Rathod | Portfolio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sachin Rathod | Flutter Developer & Java Spring Boot Engineer</title>
+  <meta name="description" content="Sachin Rathod is a Flutter developer in Gandhinagar building IoT dashboards, real-time telemetry apps, and Java Spring Boot backend systems for connected vehicle use cases." />
+  <meta name="robots" content="index,follow" />
+  <meta property="og:title" content="Sachin Rathod | Flutter Developer & Java Spring Boot Engineer" />
+  <meta property="og:description" content="Portfolio of Sachin Rathod: Flutter frontend, Java Spring Boot backend, IoT dashboards, and connected vehicle focused engineering." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="/" />
+  <meta name="theme-color" content="#0f172a" />
   <style>
     :root {
-      --background: #000000;
-      --cream: #FFFDD0;
-      --text: #FFFDD0;
-      --accent: #FFFDD0;
+      color-scheme: dark;
+      --bg: #020617;
+      --surface: #0f172a;
+      --surface-2: #111827;
+      --text: #e2e8f0;
+      --muted: #cbd5e1;
+      --brand: #38bdf8;
+      --brand-2: #22d3ee;
+      --border: #1e293b;
+      --max: 74rem;
+      --radius: 1rem;
+      --shadow: 0 0.625rem 2rem rgba(2, 6, 23, 0.35);
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 5rem;
     }
 
     body {
-      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: var(--background);
-      color: var(--text);
-      line-height: 1.6;
-      display: flex;
-      justify-content: center;
-    }
-
-    main {
-      width: 100%;
-      max-width: 1100px;
-      padding: 3rem 1.5rem 2.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 3rem;
-    }
-
-    header {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      align-items: flex-start;
-    }
-
-    .hero {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-      padding: 2.5rem;
-      border: 1px solid var(--cream);
-      border-radius: 12px;
-      background: rgba(255, 253, 208, 0.02);
-    }
-
-    .hero h1 {
-      font-size: 2.25rem;
-      font-weight: 700;
-      color: var(--cream);
-    }
-
-    .hero p {
-      font-size: 1.1rem;
-      color: var(--cream);
-      opacity: 0.9;
-    }
-
-    .actions {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .button {
-      background: var(--cream);
-      color: #000000;
-      border: none;
-      padding: 0.75rem 1.5rem;
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       font-size: 1rem;
-      font-weight: 600;
-      border-radius: 999px;
-      text-decoration: none;
-      transition: transform 150ms ease, box-shadow 150ms ease;
-      display: inline-flex;
+      line-height: 1.55;
+      background: linear-gradient(180deg, #020617 0%, #0b1120 100%);
+      color: var(--text);
+    }
+
+    a { color: var(--brand); }
+
+    .container {
+      width: 100%;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: 0;
+      background: #fff;
+      color: #000;
+      padding: 0.75rem 1rem;
+      z-index: 100;
+    }
+
+    .skip-link:focus { left: 0.75rem; top: 0.75rem; }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(2, 6, 23, 0.92);
+      backdrop-filter: blur(0.375rem);
+      border-bottom: 0.0625rem solid var(--border);
+    }
+
+    .header-row {
+      min-height: 4rem;
+      display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
+    .brand {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.02em;
+    }
+
+    .menu-btn {
+      min-width: 2.75rem;
+      min-height: 2.75rem;
+      border: 0.0625rem solid var(--border);
+      border-radius: 0.75rem;
+      background: var(--surface);
+      color: var(--text);
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .site-nav {
+      display: none;
+      padding-bottom: 0.75rem;
+    }
+
+    .site-nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
       gap: 0.5rem;
     }
 
-    .button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 30px rgba(255, 253, 208, 0.12);
+    .site-nav a {
+      min-height: 2.75rem;
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 500;
+      padding: 0.25rem 0;
+    }
+
+    .site-nav.open { display: block; }
+
+    main { padding: 1.25rem 0 3rem; }
+
+    .hero {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.12), rgba(15, 23, 42, 0.96));
+      border: 0.0625rem solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      box-shadow: var(--shadow);
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(1.625rem, 5vw, 2.8rem);
+      line-height: 1.2;
+    }
+
+    .eyebrow {
+      margin: 0;
+      color: var(--brand-2);
+      font-size: 0.875rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .lead {
+      margin: 1rem 0 0;
+      color: var(--muted);
+      max-width: 65ch;
+    }
+
+    .cta-row,
+    .icon-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.625rem;
+      margin-top: 1rem;
+    }
+
+    .btn,
+    .icon-link {
+      min-height: 2.75rem;
+      min-width: 2.75rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.6875rem 1rem;
+      border-radius: 0.75rem;
+      border: 0.0625rem solid transparent;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      line-height: 1;
+    }
+
+    .btn-primary {
+      background: linear-gradient(90deg, var(--brand), var(--brand-2));
+      color: #06202e;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border-color: var(--border);
+    }
+
+    .icon-link {
+      padding: 0.6875rem;
+      background: var(--surface-2);
+      color: var(--text);
+      border-color: var(--border);
     }
 
     section {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
+      margin-top: 1.5rem;
+      background: var(--surface);
+      border: 0.0625rem solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
     }
 
-    section h2 {
-      font-size: 1.6rem;
-      letter-spacing: 0.02rem;
+    h2 {
+      margin: 0;
+      font-size: clamp(1.35rem, 4vw, 1.9rem);
+      line-height: 1.25;
     }
 
-    .projects-grid {
+    h3 { margin: 0; font-size: 1.125rem; }
+
+    p { margin: 0.75rem 0 0; }
+
+    .muted { color: var(--muted); }
+
+    .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .project-card {
-      border: 1px solid var(--cream);
-      border-radius: 12px;
-      padding: 1.5rem;
-      text-decoration: none;
-      color: var(--cream);
-      background: transparent;
-      transition: background 150ms ease, color 150ms ease, transform 150ms ease;
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-
-    .project-card:hover {
-      background: var(--cream);
-      color: #000000;
-      transform: translateY(-4px);
-    }
-
-    .project-card h3 {
-      font-size: 1.2rem;
-      font-weight: 700;
-    }
-
-    .tech {
-      font-size: 0.95rem;
-      opacity: 0.9;
-    }
-
-    .project-card ul {
-      list-style: disc;
-      padding-left: 1.25rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.35rem;
-      font-size: 0.95rem;
-      line-height: 1.5;
-    }
-
-    footer {
-      border-top: 1px solid rgba(255, 253, 208, 0.25);
-      padding-top: 1.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      align-items: flex-start;
-      font-size: 0.95rem;
-    }
-
-    .footer-links {
-      display: flex;
+      grid-template-columns: 1fr;
       gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .card {
+      background: var(--surface-2);
+      border: 0.0625rem solid var(--border);
+      border-radius: 0.875rem;
+      padding: 1rem;
+    }
+
+    .meta {
+      margin-top: 0.35rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .tag-row {
+      margin-top: 0.75rem;
+      display: flex;
       flex-wrap: wrap;
+      gap: 0.5rem;
     }
 
-    .footer-links a {
-      color: var(--cream);
-      text-decoration: none;
-      border-bottom: 1px solid transparent;
-      padding-bottom: 0.15rem;
-      transition: border-color 150ms ease;
+    .tag {
+      font-size: 0.875rem;
+      color: var(--text);
+      border: 0.0625rem solid #334155;
+      background: rgba(51, 65, 85, 0.25);
+      border-radius: 999px;
+      padding: 0.35rem 0.7rem;
     }
 
-    .footer-links a:hover {
-      border-color: var(--cream);
+    ul { margin: 0.75rem 0 0; padding-left: 1.15rem; }
+    li + li { margin-top: 0.45rem; }
+
+    .footer {
+      margin-top: 1.5rem;
+      padding: 1.25rem 0 1rem;
+      border-top: 0.0625rem solid var(--border);
     }
 
-    @media (max-width: 640px) {
-      .hero {
-        padding: 1.75rem;
-      }
+    :focus-visible {
+      outline: 0.125rem solid var(--brand-2);
+      outline-offset: 0.125rem;
+    }
 
-      .hero h1 {
-        font-size: 1.9rem;
-      }
+    @media (min-width: 640px) {
+      .container { padding: 0 1.25rem; }
+      main { padding-top: 1.75rem; }
+      .hero, section { padding: 1.5rem; }
+      .grid.projects { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
 
-      .hero p {
-        font-size: 1rem;
+    @media (min-width: 768px) {
+      .menu-btn { display: none; }
+      .site-nav {
+        display: block;
+        padding: 0;
       }
+      .site-nav ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.9rem;
+      }
+      .hero { padding: 2rem; }
+      .grid.skills { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .grid.connect { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (min-width: 1024px) {
+      .container { padding: 0 1.5rem; }
+      .grid.projects { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .grid.main-split { grid-template-columns: 1.2fr 1fr; align-items: start; }
+    }
+
+    @media (min-width: 1280px) {
+      .hero { padding: 2.25rem; }
+      section { padding: 1.75rem; }
+    }
+
+    @media (min-width: 1536px) {
+      body { font-size: 1.05rem; }
     }
   </style>
 </head>
 <body>
-  <main>
-    <header class="hero">
-      <div>
-        <p style="letter-spacing: 0.12rem; text-transform: uppercase; font-size: 0.95rem; opacity: 0.85;">Sachin Rathod</p>
-        <h1>Software Engineer | Java &amp; IoT</h1>
-        <p>Building reliable backends, connected systems, and performant services with modern Java, Spring, and cloud-native tooling.</p>
-      </div>
-      <div class="actions">
-        <a class="button" href="#projects">View Projects</a>
-      </div>
-    </header>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="site-header">
+    <div class="container header-row">
+      <a class="brand" href="#home" aria-label="Sachin Rathod home">Sachin Rathod</a>
+      <button id="menuBtn" class="menu-btn" aria-expanded="false" aria-controls="siteNav" aria-label="Toggle navigation menu">Menu</button>
+      <nav id="siteNav" class="site-nav" aria-label="Primary navigation">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#writing">Writing</a></li>
+          <li><a href="#connect">Connect</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-    <section id="projects">
-      <h2>Projects</h2>
-      <div class="projects-grid">
-        <a class="project-card" href="https://github.com/shiks2/springBoot_eCommerce" target="_blank" rel="noopener noreferrer">
-          <div>
-            <h3>E-Commerce Backend API</h3>
-            <p class="tech">Java · Spring Boot 3 · PostgreSQL · Docker</p>
-          </div>
-          <ul>
-            <li>Architected microservices-ready backend using Spring Boot &amp; Hibernate/JPA.</li>
-            <li>Implemented security using Spring Security, JWT, and BCrypt.</li>
-            <li>Integrated Grafana for JVM memory usage and health metrics.</li>
-            <li>Designed normalized PostgreSQL schema and optimized SQL queries.</li>
-          </ul>
-        </a>
-
-        <a class="project-card" href="https://github.com/shiks2/Paking_Lot_Manager/tree/master" target="_blank" rel="noopener noreferrer">
-          <div>
-            <h3>Parking Lot Manager</h3>
-            <p class="tech">Java · Object-Oriented Design</p>
-          </div>
-          <ul>
-            <li>Designed modular system adhering to SOLID principles.</li>
-            <li>Implemented algorithms for spot allocation and dynamic pricing.</li>
-            <li>Handled edge cases and concurrency for data integrity.</li>
-          </ul>
-        </a>
+  <main id="main" class="container">
+    <section id="home" class="hero" aria-label="Hero section">
+      <p class="eyebrow">Flutter Developer in Gandhinagar</p>
+      <h1>Sachin Rathod — Flutter Developer &amp; Java Spring Boot Backend Engineer</h1>
+      <p class="lead">Software Engineer with around 2 years of experience building scalable mobile and web applications. I build real-time telemetry products, IoT dashboards, and robust UIs, and I am focused on connected vehicle systems using Flutter on the frontend and Java/Spring Boot on the backend.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#projects">View Projects</a>
+        <a class="btn btn-secondary" href="#contact">Contact Me</a>
+        <a class="btn btn-secondary" href="Sachin_Rathod_Resume.pdf" target="_blank" rel="noopener" aria-label="View resume PDF">View Resume</a>
+        <a class="btn btn-secondary" href="Sachin_Rathod_Resume.pdf" download aria-label="Download Sachin Rathod resume PDF">Download Resume</a>
+      </div>
+      <div class="icon-links" aria-label="Key profile links">
+        <a class="icon-link" href="https://github.com/shiks2" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">GH</a>
+        <a class="icon-link" href="https://www.linkedin.com/in/sachin-rathod-8b2911264/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">IN</a>
+        <a class="icon-link" href="https://www.youtube.com/@SachinRathod-1492" target="_blank" rel="noopener noreferrer" aria-label="YouTube channel">YT</a>
+        <a class="icon-link" href="https://medium.com/@rathod.sachin1492/about" target="_blank" rel="noopener noreferrer" aria-label="Medium profile">MD</a>
       </div>
     </section>
 
-    <footer>
-      <p>© 2026 Sachin Rathod</p>
-      <div class="footer-links">
-        <a href="https://www.linkedin.com/in/sachin-rathod-8b2911264/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        <a href="https://github.com/shiks2" target="_blank" rel="noopener noreferrer">GitHub</a>
+    <section id="about">
+      <h2>About</h2>
+      <p class="muted">I work at Hermes Technology as a Junior Developer in Gandhinagar, building high-performance Flutter applications that consume high-frequency sensor data through MQTT and REST APIs. I enjoy solving real-time data and UI performance problems while growing into the connected mobility domain.</p>
+      <div class="grid main-split">
+        <article class="card">
+          <h3>Education</h3>
+          <ul>
+            <li>MCA, LJ University, Ahmedabad (2022 – 2026)</li>
+            <li>B.Com, Gujarat University, Ahmedabad (2019 – 2022)</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Certifications</h3>
+          <div class="tag-row" aria-label="Certifications">
+            <span class="tag">JavaScript Data Science: Java (IBM)</span>
+            <span class="tag">Python for Data Science</span>
+            <span class="tag">JavaScript Basics</span>
+            <span class="tag">AWS S3 Basics</span>
+            <span class="tag">SEO Fundamentals</span>
+            <span class="tag">Flask Web Development</span>
+          </div>
+        </article>
       </div>
+    </section>
+
+    <section id="experience">
+      <h2>Experience</h2>
+      <article class="card">
+        <h3>Junior Developer — Hermes Technology</h3>
+        <p class="meta">May 2024 – Present · Gandhinagar, Gujarat</p>
+        <ul>
+          <li>Engineered real-time Flutter dashboards to visualize IoT telemetry from an MQTT pipeline with low latency live device monitoring.</li>
+          <li>Collaborated with backend engineers to design REST APIs for high-frequency sensor updates and efficient payload handling.</li>
+          <li>Built responsive Flutter UI flows for smooth iOS and Android experiences.</li>
+          <li>Implemented Provider/BLoC state management to handle asynchronous data streams while improving app performance.</li>
+          <li>Led testing and debugging cycles that reduced crash rates and improved application stability.</li>
+        </ul>
+      </article>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <p class="muted">Project hub designed to scale into detail pages later (for example: <code>/projects/shellscope</code>, <code>/projects/parking-lot-manager</code>).</p>
+      <div class="grid projects">
+        <article class="card" id="project-shellscope">
+          <h3>ShellScope — System Observability Tool (2026)</h3>
+          <p class="meta">Python · Flutter Desktop · WMI · SQLite</p>
+          <ul>
+            <li>Built a local-first shell recorder for Windows that captures transient processes (&lt;100ms) using WMI.</li>
+            <li>Created a JSON-over-pipes IPC bridge to stream real-time process data from Python backend to Flutter Desktop UI.</li>
+            <li>Optimized SQLite logging for command-line audits and suspicious activity flags (including encoded commands) with zero cloud dependency.</li>
+            <li>Reduced overhead with efficient polling that separates standard processes from anomalies.</li>
+          </ul>
+        </article>
+        <article class="card" id="project-parking">
+          <h3>Parking Lot Manager (2023)</h3>
+          <p class="meta">Java · OOP · SOLID Design</p>
+          <ul>
+            <li>Designed a modular parking lot management system using SOLID principles and object-oriented design patterns.</li>
+            <li>Implemented parking spot allocation, vehicle retrieval, and dynamic pricing algorithms.</li>
+            <li>Handled complex edge cases and concurrency for integrity during simultaneous parking requests.</li>
+          </ul>
+          <p><a href="https://github.com/shiks2/Paking_Lot_Manager/tree/master" target="_blank" rel="noopener noreferrer" aria-label="View Parking Lot Manager on GitHub">View GitHub</a></p>
+        </article>
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2>Skills</h2>
+      <div class="grid skills">
+        <article class="card">
+          <h3>Languages</h3>
+          <div class="tag-row">
+            <span class="tag">Java</span><span class="tag">Dart (Flutter)</span><span class="tag">Python</span><span class="tag">SQL</span><span class="tag">PostgreSQL</span><span class="tag">MySQL</span>
+          </div>
+        </article>
+        <article class="card">
+          <h3>Backend</h3>
+          <div class="tag-row">
+            <span class="tag">Spring Boot</span><span class="tag">Hibernate</span><span class="tag">Spring Security</span><span class="tag">REST APIs</span>
+          </div>
+        </article>
+        <article class="card">
+          <h3>Frontend</h3>
+          <div class="tag-row">
+            <span class="tag">Flutter</span><span class="tag">Provider</span><span class="tag">BLoC</span><span class="tag">HTML/CSS</span>
+          </div>
+        </article>
+        <article class="card">
+          <h3>DevOps &amp; Tools</h3>
+          <div class="tag-row">
+            <span class="tag">Grafana</span><span class="tag">Docker</span><span class="tag">Git</span><span class="tag">Postman</span><span class="tag">IntelliJ IDEA</span><span class="tag">VS Code</span><span class="tag">MQTT Concepts</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="writing">
+      <h2>Writing / Content</h2>
+      <p class="muted">Content hub structure ready to scale into article pages later (for example: <code>/writing/topic-slug</code>) for programmatic SEO growth.</p>
+      <div class="grid">
+        <article class="card">
+          <h3>Medium</h3>
+          <p>Technical writing on software engineering topics and learning journeys.</p>
+          <p><a href="https://medium.com/@rathod.sachin1492/about" target="_blank" rel="noopener noreferrer" aria-label="Open Medium profile">Visit Medium profile</a></p>
+        </article>
+        <article class="card">
+          <h3>YouTube</h3>
+          <p>Video content around engineering practice and development topics.</p>
+          <p><a href="https://www.youtube.com/@SachinRathod-1492" target="_blank" rel="noopener noreferrer" aria-label="Open YouTube channel">Visit YouTube channel</a></p>
+        </article>
+      </div>
+    </section>
+
+    <section id="connect">
+      <h2>Find me online</h2>
+      <div class="grid connect">
+        <a class="card" href="https://www.linkedin.com/in/sachin-rathod-8b2911264/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><h3>LinkedIn</h3><p class="muted">Professional profile and network.</p></a>
+        <a class="card" href="https://github.com/shiks2" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><h3>GitHub</h3><p class="muted">Code repositories and projects.</p></a>
+        <a class="card" href="https://medium.com/@rathod.sachin1492/about" target="_blank" rel="noopener noreferrer" aria-label="Medium"><h3>Medium</h3><p class="muted">Articles and written content.</p></a>
+        <a class="card" href="https://www.youtube.com/@SachinRathod-1492" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><h3>YouTube</h3><p class="muted">Videos and channel updates.</p></a>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <article class="card">
+        <p><strong>Email:</strong> <a href="mailto:rathodsachin5203@gmail.com">rathodsachin5203@gmail.com</a></p>
+        <p><strong>Phone:</strong> <a href="tel:+918320047586">+91 8320047586</a></p>
+        <p><strong>Location:</strong> Gandhinagar, India</p>
+      </article>
+    </section>
+
+    <footer class="footer">
+      <div class="icon-links" aria-label="Footer profile links">
+        <a class="icon-link" href="https://github.com/shiks2" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">GH</a>
+        <a class="icon-link" href="https://www.linkedin.com/in/sachin-rathod-8b2911264/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">IN</a>
+        <a class="icon-link" href="https://www.youtube.com/@SachinRathod-1492" target="_blank" rel="noopener noreferrer" aria-label="YouTube channel">YT</a>
+        <a class="icon-link" href="https://medium.com/@rathod.sachin1492/about" target="_blank" rel="noopener noreferrer" aria-label="Medium profile">MD</a>
+      </div>
+      <p class="muted">© 2026 Sachin Rathod · Flutter developer in Gandhinagar focused on IoT dashboards and connected vehicle systems.</p>
     </footer>
   </main>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Sachin Rathod",
+      "jobTitle": "Software Engineer",
+      "email": "mailto:rathodsachin5203@gmail.com",
+      "telephone": "+91 8320047586",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Gandhinagar",
+        "addressCountry": "India"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/in/sachin-rathod-8b2911264/",
+        "https://github.com/shiks2",
+        "https://www.youtube.com/@SachinRathod-1492",
+        "https://medium.com/@rathod.sachin1492/about"
+      ]
+    }
+  </script>
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const siteNav = document.getElementById('siteNav');
+
+    menuBtn.addEventListener('click', () => {
+      const isOpen = siteNav.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    siteNav.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth < 768) {
+          siteNav.classList.remove('open');
+          menuBtn.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+  </script>
 </body>
 </html>
