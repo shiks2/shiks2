@@ -6,7 +6,7 @@
 <title>Sachin Rathod — AI Engineer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -32,6 +32,33 @@
     font-size: 15px;
     line-height: 1.6;
     min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* GRAIN LAYER — sits above bg, below content */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  nav, .hero, .stats-row, .section, footer { position: relative; z-index: 1; }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -120px;
+    left: -160px;
+    width: 480px;
+    height: 480px;
+    background: radial-gradient(circle, rgba(200,240,122,0.14) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: -1;
   }
 
   /* NAV */
@@ -65,6 +92,7 @@
   }
 
   .nav-links a {
+    position: relative;
     font-size: 13px;
     color: var(--text2);
     text-decoration: none;
@@ -73,6 +101,10 @@
     transition: color 0.15s, background 0.15s;
   }
   .nav-links a:hover { color: var(--text); background: var(--bg3); }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+  }
 
   .nav-cta {
     font-size: 13px;
@@ -91,8 +123,9 @@
 
   /* HERO */
   .hero {
-    padding: 140px 32px 80px;
+    padding: 160px 32px 96px;
     max-width: 760px;
+    position: relative;
   }
 
   .hero-eyebrow {
@@ -129,6 +162,17 @@
     font-style: italic;
     color: var(--accent);
   }
+
+  .line-wrap { display: block; overflow: hidden; }
+  .line {
+    display: block;
+    transform: translateY(110%);
+    animation: line-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .line-wrap:nth-child(1) .line { animation-delay: 0.05s; }
+  .line-wrap:nth-child(2) .line { animation-delay: 0.16s; }
+  .line-wrap:nth-child(3) .line { animation-delay: 0.27s; }
+  @keyframes line-up { to { transform: translateY(0); } }
 
   .hero-sub {
     font-size: 16px;
@@ -178,13 +222,14 @@
     align-items: center;
     gap: 8px;
   }
-  .btn-accent:hover { opacity: 0.85; }
+  .btn-accent:hover { opacity: 0.9; transform: translateY(-1px); box-shadow: 0 6px 16px -4px rgba(200,240,122,0.35); }
+  .btn-accent, .btn-ghost { transition: opacity 0.15s, transform 0.15s, box-shadow 0.2s, border-color 0.15s, background 0.15s; }
 
   /* STATS */
   .stats-row {
     display: flex;
-    gap: 40px;
-    padding: 32px;
+    gap: 56px;
+    padding: 40px 32px;
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
     flex-wrap: wrap;
@@ -192,35 +237,38 @@
 
   .stat { }
   .stat-num {
-    font-family: 'Instrument Serif', serif;
-    font-size: 28px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 500;
+    font-size: 26px;
     color: var(--text);
     line-height: 1;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
   }
   .stat-label { font-size: 12px; color: var(--text2); }
 
   /* SECTION */
   .section {
-    padding: 64px 32px;
+    padding: 96px 32px;
   }
 
   .section-header {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
-    margin-bottom: 32px;
+    margin-bottom: 40px;
     flex-wrap: wrap;
     gap: 12px;
   }
 
   .section-title {
-    font-size: 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
     font-weight: 500;
     color: var(--text3);
     text-transform: uppercase;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
   }
+  .section-title::before { content: '// '; color: var(--accent); opacity: 0.6; }
 
   .see-all {
     font-size: 12px;
@@ -242,25 +290,50 @@
     border: 1px solid var(--border);
     border-radius: 12px;
     overflow: hidden;
+    perspective: 800px;
   }
 
   .project-card {
     background: var(--bg);
-    padding: 28px;
+    padding: 32px;
     cursor: pointer;
     text-decoration: none;
     display: block;
-    transition: background 0.2s;
+    transition: background 0.2s, transform 0.25s ease;
     position: relative;
+    will-change: transform;
   }
-  .project-card:hover { background: var(--bg2); }
+  .project-card:hover {
+    background: var(--bg2);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 24px -8px rgba(0,0,0,0.5), 0 0 0 1px var(--border-hover);
+  }
 
   .card-animal {
     font-size: 28px;
     margin-bottom: 16px;
-    display: block;
+    display: inline-block;
     filter: grayscale(0.2);
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
+  .project-card:hover .card-animal {
+    transform: scale(1.15) rotate(-6deg);
+  }
+
+  .card-animal-name {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+  }
+  .card-animal-status {
+    color: var(--accent);
+    opacity: 0;
+    transition: opacity 0.2s;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .project-card:hover .card-animal-status { opacity: 0.85; }
 
   .card-meta {
     display: flex;
@@ -299,11 +372,12 @@
   }
 
   .tag {
-    font-size: 11px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
     color: var(--text3);
     border: 1px solid var(--border);
     padding: 3px 8px;
-    border-radius: 20px;
+    border-radius: 4px;
     letter-spacing: 0.02em;
   }
 
@@ -321,16 +395,16 @@
   .about-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 48px;
+    gap: 64px;
     align-items: start;
   }
 
   @media (max-width: 600px) {
     .about-grid { grid-template-columns: 1fr; gap: 32px; }
     nav { padding: 0 16px; }
-    .hero { padding: 100px 16px 60px; }
-    .section { padding: 48px 16px; }
-    .stats-row { padding: 24px 16px; gap: 24px; }
+    .hero { padding: 110px 16px 64px; }
+    .section { padding: 56px 16px; }
+    .stats-row { padding: 28px 16px; gap: 24px; }
   }
 
   .about-left h2 {
@@ -371,7 +445,18 @@
   }
   .social-link:hover { border-color: var(--border-hover); color: var(--text); }
 
-  .about-right { }
+  .about-right { position: relative; }
+  .about-right::before {
+    content: '';
+    position: absolute;
+    top: -40px;
+    right: -80px;
+    width: 320px;
+    height: 320px;
+    background: radial-gradient(circle, rgba(200,240,122,0.08) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: -1;
+  }
 
   .skill-group { margin-bottom: 24px; }
   .skill-group-label {
@@ -481,7 +566,11 @@
 <!-- HERO -->
 <section class="hero reveal">
   <div class="hero-eyebrow">AI Engineer · IoT Systems · India</div>
-  <h1>Building <em>intelligent</em><br>systems that talk<br>to the real world</h1>
+  <h1 class="hero-title">
+    <span class="line-wrap"><span class="line">Building <em>intelligent</em></span></span>
+    <span class="line-wrap"><span class="line">systems that talk</span></span>
+    <span class="line-wrap"><span class="line">to the real world</span></span>
+  </h1>
   <p class="hero-sub">2 years shipping real-time IoT telemetry at scale. Now bridging hardware and LLMs — RAG pipelines, anomaly detection, and AI-powered products. Each project here has a guardian.</p>
   <div class="hero-btns">
     <a href="#projects" class="btn-accent">View projects ↓</a>
@@ -496,11 +585,11 @@
     <div class="stat-label">Years production IoT</div>
   </div>
   <div class="stat">
-    <div class="stat-num">5</div>
+    <div class="stat-num">6</div>
     <div class="stat-label">Projects shipped</div>
   </div>
   <div class="stat">
-    <div class="stat-num">4</div>
+    <div class="stat-num">3</div>
     <div class="stat-label">Endangered guardians</div>
   </div>
   <div class="stat">
@@ -518,7 +607,7 @@
 
   <div class="projects-grid reveal">
 
-    <a href="rang.html" class="project-card">
+    <a href="https://assortir.shiks-publications.workers.dev/" target="_blank" rel="noopener" class="project-card">
       <span class="card-animal">🦚</span>
       <div class="card-meta">
         <span class="card-name">Rang</span>
@@ -531,7 +620,7 @@
         <span class="tag">Supabase</span>
         <span class="tag">React</span>
       </div>
-      <span class="card-animal-name">Indian Peacock</span>
+      <span class="card-animal-name">Indian Peacock <span class="card-animal-status">· Least Concern</span></span>
     </a>
 
     <a href="rag-pipeline.html" class="project-card">
@@ -546,7 +635,7 @@
         <span class="tag">NestJS</span>
         <span class="tag">PostgreSQL</span>
       </div>
-      <span class="card-animal-name">Snow Leopard</span>
+      <span class="card-animal-name">Snow Leopard <span class="card-animal-status">· Vulnerable</span></span>
     </a>
 
     <a href="anomaly-explainer.html" class="project-card">
@@ -562,10 +651,10 @@
         <span class="tag">Flutter</span>
         <span class="tag">NestJS</span>
       </div>
-      <span class="card-animal-name">Gharial</span>
+      <span class="card-animal-name">Gharial <span class="card-animal-status">· Critically Endangered</span></span>
     </a>
 
-    <a href="shellscope.html" class="project-card">
+    <a href="https://shiks2.github.io/shellscope/" target="_blank" rel="noopener" class="project-card">
       <span class="card-animal">🐼</span>
       <div class="card-meta">
         <span class="card-name">ShellScope</span>
@@ -578,7 +667,23 @@
         <span class="tag">WMI</span>
         <span class="tag">SQLite</span>
       </div>
-      <span class="card-animal-name">Giant Panda</span>
+      <span class="card-animal-name">Giant Panda <span class="card-animal-status">· Vulnerable</span></span>
+    </a>
+
+    <a href="https://shiks2.github.io/miwa-discord-bot/" target="_blank" rel="noopener" class="project-card">
+      <span class="card-animal">🦉</span>
+      <div class="card-meta">
+        <span class="card-name">Miwa</span>
+        <span class="card-arrow">↗</span>
+      </div>
+      <p class="card-desc">Discord bot for real-time voice transcription. Streams audio to Groq Whisper with production-grade resilience — exponential backoff, a shared-state circuit breaker, and half-open recovery — so it degrades gracefully instead of hammering a failing API.</p>
+      <div class="card-tags">
+        <span class="tag">Async Python</span>
+        <span class="tag">Groq Whisper</span>
+        <span class="tag">Circuit Breaker</span>
+        <span class="tag">Railway</span>
+      </div>
+      <span class="card-animal-name">Indian Eagle-Owl <span class="card-animal-status">· Least Concern</span></span>
     </a>
 
   </div>
@@ -588,28 +693,28 @@
 <section class="section" id="writing" style="padding-top: 0;">
   <div class="section-header reveal">
     <span class="section-title">Writing — DevDiary</span>
-    <a href="https://medium.com" target="_blank" class="see-all">Medium →</a>
+    <a href="https://medium.com/@rathod.sachin1492" target="_blank" rel="noopener" class="see-all">Medium →</a>
   </div>
 
   <div class="writing-list reveal">
-    <a href="#" class="writing-item">
+    <a href="https://medium.com/@rathod.sachin1492/when-your-solar-inverters-lie-a-production-data-recovery-story-d988b88a6878" target="_blank" rel="noopener" class="writing-item">
       <div>
-        <div class="writing-title">How I built a RAG pipeline for fashion recommendations using Claude API</div>
-        <div class="writing-meta">Medium · AI Engineering</div>
+        <div class="writing-title">When Your Solar Inverters Lie: A Production Data Recovery Story</div>
+        <div class="writing-meta">Medium · How a clock sync bug silently corrupted Daily Energy readings across multiple sites — and how we got the data back from 22GB of logs</div>
       </div>
       <span class="writing-arrow">↗</span>
     </a>
-    <a href="#" class="writing-item">
+    <a href="https://medium.com/@rathod.sachin1492/how-i-cut-claude-api-input-tokens-by-59-using-a-fashion-rules-database-bbecf04e04cc" target="_blank" rel="noopener" class="writing-item">
       <div>
-        <div class="writing-title">Tokens, tokenization, and why it matters for IoT data pipelines</div>
-        <div class="writing-meta">Medium · Chapter 1 Notes</div>
+        <div class="writing-title">How I Cut Claude API Input Tokens by 59% Using a Fashion Rules Database</div>
+        <div class="writing-meta">Medium · A practical RAG pattern for apps where context is predictable</div>
       </div>
       <span class="writing-arrow">↗</span>
     </a>
-    <a href="#" class="writing-item">
+    <a href="https://medium.com/@rathod.sachin1492/i-built-an-ai-stylist-that-knows-your-skin-tone-and-todays-weather-205e09250137" target="_blank" rel="noopener" class="writing-item">
       <div>
-        <div class="writing-title">From MQTT to LLMs: bridging real-time telemetry and language models</div>
-        <div class="writing-meta">Medium · IoT + AI</div>
+        <div class="writing-title">I Built an AI Stylist That Knows Your Skin Tone and Today's Weather</div>
+        <div class="writing-meta">Medium · The problem was simple. The solution took six months.</div>
       </div>
       <span class="writing-arrow">↗</span>
     </a>
@@ -627,7 +732,7 @@
       <h2>Software engineer.<br><em>Learning in public.</em></h2>
       <p>I'm Sachin — a software engineer from Ahmedabad, India. I spend my days building real-time IoT telemetry systems at Hermes Technology and my nights figuring out how language models can make those systems smarter.</p>
       <p>I document everything on DevDiary — the wins, the dead ends, and the concepts I'm still wrapping my head around. Currently reading Chip Huyen's AI Engineering and taking notes in public.</p>
-      <p>Looking for AI Engineer roles at product startups, especially international remote or relocation opportunities in the EU, Singapore, or UK.</p>
+      <p>Looking for AI Engineer or founding/full-stack roles at early-stage product startups, especially international remote or relocation opportunities in the EU, Singapore, or UK.</p>
 
       <div class="socials">
         <a href="https://github.com/shiks2" target="_blank" class="social-link">
@@ -715,6 +820,29 @@
   document.querySelectorAll('.project-card').forEach((card, i) => {
     card.style.transitionDelay = i * 40 + 'ms';
   });
+
+  // Subtle tilt on project cards (skipped for touch / reduced-motion users)
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isTouch = window.matchMedia('(hover: none)').matches;
+  if (!prefersReducedMotion && !isTouch) {
+    document.querySelectorAll('.project-card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const r = card.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width - 0.5;
+        const y = (e.clientY - r.top) / r.height - 0.5;
+        card.style.transform = `translateY(-3px) rotateX(${(-y * 4).toFixed(2)}deg) rotateY(${(x * 4).toFixed(2)}deg)`;
+      });
+      card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+    });
+
+    // Cursor dot grows over interactive elements
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => dot.style.transform = 'scale(2.4)');
+      el.addEventListener('mouseleave', () => dot.style.transform = 'scale(1)');
+    });
+  } else {
+    dot.style.display = 'none';
+  }
 </script>
 </body>
 </html>
